@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Message from './components/message'
 
 class App extends Component {
   constructor(props){
@@ -8,7 +9,8 @@ class App extends Component {
     // this.decrement = this.decrement.bind(this)
   }
   state = {
-    counter:0
+    counter:0,
+    phrases:['Hello','Ero']
   }
   increment=()=> {
     this.setState({
@@ -17,7 +19,8 @@ class App extends Component {
   }
   decrement=()=> {
     this.setState({
-      counter: this.state.counter-1
+      counter: this.state.counter-1,
+
     })
   }
   render() {
@@ -30,6 +33,7 @@ class App extends Component {
           <button onClick = { this.decrement }>
             decrement
           </button>
+          <Message text = {'Ero'} phrases = { this.state.phrases }/> 
       </div>
     );
   }
