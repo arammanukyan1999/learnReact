@@ -1,41 +1,29 @@
 import React, { Component } from 'react';
 import './App.css';
-import Message from './components/message'
-
+import TodoList from './components/TodoList'
+import TodoCreator from './components/TodoCreator'
+const todos = [
+  {description:'Learn JS', isDone:true},
+  {description:'Learn React', isDone:false}
+]
 class App extends Component {
-  constructor(props){
-    super(props);
-    // this.increment = this.increment.bind(this)
-    // this.decrement = this.decrement.bind(this)
-  }
   state = {
-    counter:0,
-    phrases:['Hello','Ero']
-  }
-  increment=()=> {
-    this.setState({
-      counter: this.state.counter+1
-    })
-  }
-  decrement=()=> {
-    this.setState({
-      counter: this.state.counter-1,
-
-    })
+    todos
   }
   render() {
     return (
       <div className="App">
-          {this.state.counter}
-          <button onClick = { this.increment }>
-            increment
-          </button>
-          <button onClick = { this.decrement }>
-            decrement
-          </button>
-          <Message text = {'Ero'} phrases = { this.state.phrases }/> 
+        <TodoCreator onTodoCreate={this.createTodo}/>
+        <TodoList todos = {this.state.todos} onTodoCreate = {this.createTodo} />
       </div>
     );
+  }
+  createTodo = (todo) => {
+    const todos = [...this.state.todos];
+    todos.push(todo);
+    this.setState({
+      todos
+    })
   }
 }
 
